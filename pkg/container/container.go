@@ -1,17 +1,22 @@
 package container
 
+import "github.com/johnfercher/go-diagram/pkg"
+
 type container struct {
-	alias       string
-	label       string
-	description string
+	alias    string
+	optional pkg.Optional
 }
 
-func New(alias string, label string, description string) *container {
-	return &container{
-		alias:       alias,
-		label:       label,
-		description: description,
+func New(alias string, optional ...pkg.Optional) pkg.Node {
+	container := &container{
+		alias: alias,
 	}
+
+	if len(optional) != 0 {
+		container.optional = optional[0]
+	}
+
+	return container
 }
 
 func (c *container) GetAlias() string {
@@ -19,9 +24,13 @@ func (c *container) GetAlias() string {
 }
 
 func (c *container) GetLabel() string {
-	return c.label
+	return c.optional.Label
 }
 
 func (c *container) GetDescription() string {
-	return c.description
+	return c.optional.Description
+}
+
+func (c *container) GetType() string {
+	return "Container"
 }

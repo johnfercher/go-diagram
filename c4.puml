@@ -1,9 +1,19 @@
 @startuml C4_Elements
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-Person(personAlias, "Label", "Optional Description")
-Container(containerAlias, "Label", "Technology", "Optional Description")
-System(systemAlias, "Label", "Optional Description")
+Person(person, "", "")
+System(system1, "", "")
+System(system2, "", "")
+System(system3, "", "")
+Container(container1, "", "")
+Container(container2, "", "")
+Container(container3, "", "")
 
-Rel(personAlias, containerAlias, "Label", "Optional Technology")
+Rel(person, system1, "%!s(MISSING)", "%!s(MISSING)")
+Rel(system1, system2, "%!s(MISSING)", "%!s(MISSING)")
+Rel(system1, system3, "%!s(MISSING)", "%!s(MISSING)")
+Rel(system2, container1, "%!s(MISSING)", "%!s(MISSING)")
+Rel(system2, container2, "%!s(MISSING)", "%!s(MISSING)")
+Rel(system3, container3, "%!s(MISSING)", "%!s(MISSING)")
+
 @enduml
