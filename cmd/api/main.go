@@ -1,9 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"github.com/blushft/go-diagrams/diagram"
-	"github.com/blushft/go-diagrams/nodes/gcp"
 	"github.com/johnfercher/go-struct/pkg/domain/entities"
 	"github.com/johnfercher/go-struct/pkg/domain/filesystem"
 	"github.com/johnfercher/go-struct/pkg/services"
@@ -26,18 +23,12 @@ func main() {
 
 	filtereds := filterEntrypointMethods(projectEntities)
 
-	var entrypoints []*diagram.Node
+	var entrypoints *node.Node[Element]
 	for _, filtered := range filtereds {
-		entrypoints = append(entrypoints, gcp.Compute.ComputeEngine(diagram.NodeLabel(fmt.Sprintf("%s_%s", filtered.Struct, filtered.Name))))
-	}
+		if filtered.Struct != "" {
 
-	d, err := diagram.New(diagram.Filename("app"), diagram.Label("App"), diagram.Direction("LR"))
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	for i := 0; i < len(entrypoints)-1; i++ {
-		d.Connect(entrypoints[i], entrypoints[i+1], diagram.Forward())
+		}
+		entrypoints = append(entrypoints, entrypoint)
 	}
 
 	if err := d.Render(); err != nil {
@@ -46,7 +37,7 @@ func main() {
 }
 
 func buildTree() *node.Node[Element] {
-
+	return nil
 }
 
 func filterEntrypointMethods(entityMap map[string]filesystem.Entity) []*entities.Function {
