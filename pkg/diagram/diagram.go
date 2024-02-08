@@ -37,7 +37,7 @@ func (d *diagram) Generate() (string, error) {
 	c4string += "\n"
 
 	for _, relation := range d.relations {
-		c4string += fmt.Sprintf(rel+"\n", relation.NodeA.GetAlias(), relation.NodeB.GetAlias())
+		c4string += fmt.Sprintf(rel+"\n", relation.NodeA.GetAlias(), relation.NodeB.GetAlias(), "", "")
 	}
 
 	c4string += "\n" + end
